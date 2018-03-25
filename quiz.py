@@ -2,9 +2,6 @@ import argparse
 import json
 import random
 
-
-
-
 def load_questions(filepath):
 	''' 
 	Reads questions from a user-specified file, and returns a JSON object
@@ -16,7 +13,6 @@ def load_questions(filepath):
 	with open(filepath, 'r') as question_file:
 		questions = json.load(question_file)
 		return questions
-
 
 def ask_question(question):
 	'''
@@ -41,7 +37,6 @@ def ask_question(question):
 
 	# Return True/False
 	return correct
-
 
 def main():
 	'''
