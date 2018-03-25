@@ -1,5 +1,9 @@
+import argparse
 import json
 import random
+
+
+
 
 def load_questions(filepath):
 	''' 
@@ -50,27 +54,37 @@ def main():
 	# Constants for the quiz
 	# TODO: Make these parameters or read from a file
 	score = 0
-	questions_asked = 0
+	questions_asked_count = 0
 	number_of_questions = 5
+	questions_asked_list = []
 	pass_mark = 66
 	str_pass_fail = "failed"
 	question_file_path = "questions.json"
+	already_asked = True
 
 	# Get questions from file
 	questions = load_questions(question_file_path)
 	
 
 	# Actually ask the questions
-	while questions_asked < number_of_questions:	
+	while questions_asked_count < number_of_questions:	
 		question_count = len(questions)
 		# TODO: Is there a better way of selecting a random object from a list?
-		current_question_number = random.randint(1,question_count)
+
+		while already_asked == True:
+			current_question_number = random.randint(1,question_count)
+			if current_question_number not in questions_asked_list:
+				already_asked = False
+
 		current_question = questions[str(current_question_number)]
 
-		# Increment number of asked questions
-		questions_asked = questions_asked + 1
+		already_asked = True
+		questions_asked_list.append(current_question_number)
 
-		print ("Question {0}".format(questions_asked))
+		# Increment number of asked questions
+		questions_asked_count = questions_asked_count + 1
+
+		print ("Question {0}".format(questions_asked_count))
 		correct = ask_question(current_question)
 
 		# Print question result
