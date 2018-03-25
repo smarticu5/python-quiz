@@ -64,11 +64,18 @@ def main():
 
 	# Get questions from file
 	questions = load_questions(question_file_path)
-	
+
+	# Check if the number of questions to ask is bigger than the number of questions
+	if len(questions) < number_of_questions:
+		number_of_questions = len(questions)
 
 	# Actually ask the questions
 	while questions_asked_count < number_of_questions:	
+		print(questions_asked_count)
+		print (number_of_questions)
+
 		question_count = len(questions)
+
 		# TODO: Is there a better way of selecting a random object from a list?
 
 		while already_asked == True:
