@@ -1,0 +1,24 @@
+{
+  "1": {
+    "Answer": "A",
+    "Options": [
+      "A. Arthur, King of the Britons!",
+      "B. Dave",
+      "C. Steve",
+      "D. Harry",
+      "E. Adam"
+    ],
+    "Question": "What is your name?"
+  },
+  "2": {
+    "Answer": "B",
+    "Options": [
+      "A. To prove I can do the thing",
+      "B. I seek the Holy Grail!",
+      "C. To banish boredom",
+      "D. I just want more money",
+      "E. Dunno"
+    ],
+    "Question": "What is your quest?"
+  }
+}
