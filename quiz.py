@@ -104,7 +104,7 @@ def main():
 		print ()
 
 	# Calculate percentge and pass/fail
-	percentage = score / questions_asked * 100
+	percentage = score / questions_asked_count * 100
 	if percentage > pass_mark:
 		str_pass_fail = "passed"
 
