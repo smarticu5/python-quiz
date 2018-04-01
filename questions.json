@@ -1,23 +1,23 @@
 {
   "1": {
-    "Answer": "A",
+    "Answer": "0",
     "Options": [
-      "A. Arthur, King of the Britons!",
-      "B. Dave",
-      "C. Steve",
-      "D. Harry",
-      "E. Adam"
+      "Arthur, King of the Britons!",
+      "Dave",
+      "Steve",
+      "Harry",
+      "Adam"
     ],
     "Question": "What is your name?"
   },
   "2": {
-    "Answer": "B",
+    "Answer": "1",
     "Options": [
-      "A. To prove I can do the thing",
-      "B. I seek the Holy Grail!",
-      "C. To banish boredom",
-      "D. I just want more money",
-      "E. Dunno"
+      "To prove I can do the thing",
+      "I seek the Holy Grail!",
+      "To banish boredom",
+      "I just want more money",
+      "Dunno"
     ],
     "Question": "What is your quest?"
   }

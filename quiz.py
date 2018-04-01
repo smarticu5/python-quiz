@@ -2,6 +2,15 @@ import argparse
 import json
 import random
 
+
+def get_arguments():
+	parser = argparse.ArgumentParser(description='Revision quiz')
+	parser.add_argument('-q', '--question-file', default='questions.json', type=str, help='JSON file containing questions')
+	parser.add_argument('-n', '--number', default=5, type=int, help='Number of questions to ask')
+
+	args = parser.parse_args()
+	return args
+
 def load_questions(filepath):
 	''' 
 	Reads questions from a user-specified file, and returns a JSON object
@@ -46,15 +55,18 @@ def main():
 	No parameters required (yet...)
 	'''
 
-	# Constants for the quiz
+	# Constants for the quiz, and read CLI arguments
 	# TODO: Make these parameters or read from a file
+	arguments = get_arguments()
+	print(arguments)
+
 	score = 0
 	questions_asked_count = 0
 	number_of_questions = 5
 	questions_asked_list = []
 	pass_mark = 66
 	str_pass_fail = "failed"
-	question_file_path = "questions.json"
+	question_file_path = arguments.question_file
 	already_asked = True
 
 	# Get questions from file
@@ -66,9 +78,6 @@ def main():
 
 	# Actually ask the questions
 	while questions_asked_count < number_of_questions:	
-		print(questions_asked_count)
-		print (number_of_questions)
-
 		question_count = len(questions)
 
 		# TODO: Is there a better way of selecting a random object from a list?
