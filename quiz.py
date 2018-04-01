@@ -4,6 +4,10 @@ import random
 
 
 def get_arguments():
+	'''
+	Reads CLI options and returns the arguments object
+	'''
+	
 	parser = argparse.ArgumentParser(description='Revision quiz')
 	parser.add_argument('-q', '--question-file', default='questions.json', type=str, help='JSON file containing questions')
 	parser.add_argument('-n', '--number', default=5, type=int, help='Number of questions to ask')
@@ -36,12 +40,28 @@ def ask_question(question):
 
 	print (question["Question"])
 
-	for option in question["Options"]:
-		print (option)
+	# Shuffle optional answers
+	options = question["Options"]
+
+	# Need to duplicate list. Using option from 
+	# https://stackoverflow.com/questions/2612802/how-to-clone-or-copy-a-list
+	options_shuffled = options[:]
+	random.shuffle(options_shuffled)
+
+	option_number = 0
+	for option in options_shuffled:
+		# Print out options with a letter at the start
+		print ("{0}. {1}".format(chr(option_number + 65), option))
+		option_number = option_number + 1
 
 	# Check provided answer against correct answer in JSON
-	user_answer = input("Choose an answer: ")
-	if user_answer[0].upper() == question["Answer"]:
+	user_answer = input("Choose an answer: ").upper()
+
+	user_answer_number = ord(user_answer) - 65
+
+	correct_answer_number = question["Answer"]
+
+	if options[int(correct_answer_number)] == options_shuffled[int(user_answer_number)]:
 		correct = True
 
 	# Return True/False
@@ -58,15 +78,14 @@ def main():
 	# Constants for the quiz, and read CLI arguments
 	# TODO: Make these parameters or read from a file
 	arguments = get_arguments()
-	print(arguments)
 
 	score = 0
 	questions_asked_count = 0
-	number_of_questions = 5
 	questions_asked_list = []
 	pass_mark = 66
 	str_pass_fail = "failed"
 	question_file_path = arguments.question_file
+	number_of_questions = arguments.number
 	already_asked = True
 
 	# Get questions from file
@@ -77,7 +96,7 @@ def main():
 		number_of_questions = len(questions)
 
 	# Actually ask the questions
-	while questions_asked_count < number_of_questions:	
+	while questions_asked_count < number_of_questions:
 		question_count = len(questions)
 
 		# TODO: Is there a better way of selecting a random object from a list?
@@ -103,8 +122,9 @@ def main():
 			print ("That's right!")
 			score = score + 1
 		else:
-			correct_answer = current_question["Answer"]
-			print ("Sorry. The correct answer was {0}".format(correct_answer))
+			correct_answer_number = int(current_question["Answer"])
+			correct_answer = current_question["Options"][correct_answer_number]
+			print ("Sorry. The correct answer was '{0}'".format(correct_answer))
 		print ()
 
 	# Calculate percentge and pass/fail
