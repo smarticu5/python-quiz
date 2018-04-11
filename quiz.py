@@ -1,7 +1,7 @@
 import argparse
 import json
 import random
-
+import sys
 
 def get_arguments():
 	'''
@@ -77,6 +77,12 @@ def main():
 
 	# Constants for the quiz, and read CLI arguments
 	# TODO: Make these parameters or read from a file
+
+	try:
+		assert (sys.version_info.major == 3)
+	except AssertionError:
+		sys.exit('Please run this script using Python 3')
+
 	arguments = get_arguments()
 
 	score = 0
@@ -135,7 +141,7 @@ def main():
 	# Output results
 	print ("You got {0}% correct".format(percentage))
 	print ("The pass mark is {0}%.".format(pass_mark))
-	print ("You {0}".format(str_pass_fail))
+	print ("You {0}!".format(str_pass_fail))
 
 if __name__ == '__main__':
 	main()
